@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+OpenIDE-Module-Name: Correlation Statistics
+OpenIDE-Module-Short-Description: Correlations for numeric and categorical node and edge attributes
+OpenIDE-Module-Long-Description: This module provides some correlation coefficients for node and edge attributes: Pearson's, Spearman and Cramer
+OpenIDE-Module-Display-Category: Metric

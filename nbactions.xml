@@ -6,6 +6,9 @@
             <goal>package</goal>
             <goal>org.gephi:gephi-maven-plugin:run</goal>
         </goals>
+        <properties>
+            <run.params.debug>-J-Xmx4096m</run.params.debug>
+        </properties>
     </action>
     <action>
         <actionName>debug</actionName>
@@ -15,7 +18,7 @@
         </goals>
         <properties>
             <jpda.listen>true</jpda.listen>
-            <run.params.debug>-J-Xdebug -J-Xrunjdwp:transport=dt_socket,suspend=n,server=n,address=${jpda.address}</run.params.debug> 
+            <run.params.debug>-J-Xmx4096m -J-Xdebug -J-Xrunjdwp:transport=dt_socket,suspend=n,server=n,address=${jpda.address}</run.params.debug> 
         </properties>
     </action>
 </actions>
