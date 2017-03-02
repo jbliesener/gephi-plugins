@@ -136,7 +136,7 @@ class DelegateCorrelationStatistics {
             Table table = getAttributeTable(model, correlationType);
             Column[] columns = table.toArray();
             for (Column acol : columns) {
-                if (validAttributeTypes.contains(acol.getClass())) {
+                if (validAttributeTypes.contains(acol.getTypeClass())) {
                     attributeNames.add(acol.getTitle());
                 }
             }
@@ -164,7 +164,7 @@ class DelegateCorrelationStatistics {
         return table;
     }
 
-    private Column findColumn(Table table, String columnName) {
+    protected Column findColumn(Table table, String columnName) {
         Column[] columns = table.toArray();
         for (Column acol : columns) {
             if (acol.getTitle().equals(columnName)) {
@@ -222,8 +222,8 @@ class DelegateCorrelationStatistics {
 
     private void addAttributes(Element a,
             Column col1, Column col2) {
-        Object val1 = a.getAttribute(col1.getTitle());
-        Object val2 = a.getAttribute(col2.getTitle());
+        Object val1 = a.getAttribute(col1.getId());
+        Object val2 = a.getAttribute(col2.getId());
         if (val1 == null || !(val1 instanceof Number)) {
             if (ignoreMissingAttribute1) {
                 return;
@@ -261,7 +261,7 @@ class DelegateCorrelationStatistics {
         values.add(new DoublePair(d1, d2));
 
     }
-
+    
     protected void delegateExecute(GraphModel gm) {
         correlationCoefficient = Double.NaN;
         values = new ArrayList<DoublePair>();
@@ -274,8 +274,8 @@ class DelegateCorrelationStatistics {
             return;
         }
 
-        Column col1 = table.getColumn(attribute1);
-        Column col2 = table.getColumn(attribute2);
+        Column col1 = findColumn(table, attribute1);
+        Column col2 = findColumn(table, attribute2);
         if (col1 == null || col2 == null) {
             return;
         }

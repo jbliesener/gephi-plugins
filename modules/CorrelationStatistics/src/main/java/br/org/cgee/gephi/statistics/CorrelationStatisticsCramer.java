@@ -37,8 +37,8 @@ public class CorrelationStatisticsCramer extends DelegateCorrelationStatistics i
 
     private void addAttributes(Element a,
             Column col1, Column col2) {
-        Object val1 = a.getAttribute(col1.getTitle());
-        Object val2 = a.getAttribute(col2.getTitle());
+        Object val1 = a.getAttribute(col1.getId());
+        Object val2 = a.getAttribute(col2.getId());
         if (val1 == null) {
             if (ignoreMissingAttribute1) {
                 return;
@@ -129,8 +129,8 @@ public class CorrelationStatisticsCramer extends DelegateCorrelationStatistics i
             return;
         }
 
-        Column col1 = table.getColumn(attribute1);
-        Column col2 = table.getColumn(attribute2);
+        Column col1 = findColumn(table,attribute1);
+        Column col2 = findColumn(table,attribute2);
         if (col1 == null || col2 == null) {
             return;
         }
